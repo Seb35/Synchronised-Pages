@@ -1,0 +1,61 @@
+# Translation of Synchronised Pages in French (France)
+# This file is distributed under the license WTFPL 2.0.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-09-16 18:53+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"Project-Id-Version: Synchronised Pages\n"
+"POT-Creation-Date: \n"
+"Last-Translator: Sébastien Beyou <seb35@seb35.fr>\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: fr_FR\n"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:17
+#: wp-content/synchronised_pages/synchronised_pages.php:39
+#: wp-content/synchronised_pages/synchronised_pages.php:50
+#: wp-content/synchronised_pages/synchronised_pages.php:102
+msgid "Template"
+msgstr "Modèle"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:20
+msgid "Template <span class=\"count\">(%s)</span>"
+msgid_plural "Templates <span class=\"count\">(%s)</span>"
+msgstr[0] "Modèle <span class=\"count\">(%s)</span>"
+msgstr[1] "Modèles <span class=\"count\">(%s)</span>"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:23
+#: wp-content/synchronised_pages/synchronised_pages.php:43
+#: wp-content/synchronised_pages/synchronised_pages.php:51
+#: wp-content/synchronised_pages/synchronised_pages.php:107
+msgid "Synchronised"
+msgstr "Synchronisé"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:26
+msgid "Synchronised <span class=\"count\">(%s)</span>"
+msgid_plural "Synchronised <span class=\"count\">(%s)</span>"
+msgstr[0] "Synchronisé <span class=\"count\">(%s)</span>"
+msgstr[1] "Synchronisés <span class=\"count\">(%s)</span>"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:66
+msgid "Update the template"
+msgstr "Mettre à jour le modèle"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:66
+msgid "Publish the template"
+msgstr "Publier le modèle"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:140
+msgid "Synchronised Pages"
+msgstr "Pages synchronisées"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:32
+msgid "Synchronised pages"
+msgstr "Pages synchronisées"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:33
+msgid "Sets of synchronised pages from a template page"
+msgstr "Ensembles de pages synchronisées à partir d’un modèle de page"
