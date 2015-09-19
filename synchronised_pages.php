@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Synchronised Pages
- * @version 0.0.1
+ * @version 0.0.2
  */
 /*
 Plugin Name: Synchronised Pages
@@ -85,7 +85,6 @@ function synchronised_pages_append_status() {
                synchronised_pages_original_publish = $(\'#publish\').attr(\'name\');
                synchronised_pages_original_publish_val = $(\'#publish\').val();
                synchronised_pages_original_status = $(\'option:selected\', $(\'#post_status\')).val();
-               synchronised_pages_original_visibility = false;
                
                var synchronised_pages_manage_status = function() {
                    
@@ -95,14 +94,6 @@ function synchronised_pages_append_status() {
                        $(\'#save-post\').hide();
                        $(\'#publish\').attr(\'name\', \'save\');
                        $(\'#publish\').val(synchronised_pages_original_status==\'template\'?\''.__('Update the template', 'synchronised-pages').'\':\''.__('Publish the template', 'synchronised-pages').'\');
-                       
-                       // Don’t let the choice about the visibility
-                       if( !synchronised_pages_original_visibility ) {
-                           synchronised_pages_original_visibility = $(\'post-visibility-select\').find(\'input:radio:checked\').val();
-                           $(\'#visibility-radio-public\').prop(\'checked\', true);
-                       }
-                       $(\'#post-visibility-display\').html( postL10n[ \'private\' ] );
-                       $(\'.misc-pub-visibility a.edit-visibility\').hide();
                    } else {
                        
                        // Restore the original \'Publish\' button, either save or publish depending on the current state – WP manages the \'Save\' button
@@ -110,16 +101,6 @@ function synchronised_pages_append_status() {
                            $(\'#publish\').attr(\'name\', synchronised_pages_original_publish);
                            $(\'#publish\').val(synchronised_pages_original_publish_val);
                        }
-                       
-                       // Restore the original visibility
-                       if( synchronised_pages_original_visibility ) {
-                           $(\'#visibility-radio-\'+synchronised_pages_original_visibility).prop(\'checked\', true);
-                       }
-                       synchronised_pages_original_visibility = false;
-                       $(\'#post-visibility-display\').html( postL10n[ $(\'#post-visibility-select\').find(\'input:radio:checked\').val() + ($(\'#sticky\').prop(\'checked\')?\'Sticky\':\'\') ] );
-                       
-                       // Restore the choice about the visibility
-                       $(\'.misc-pub-visibility a.edit-visibility\').show();
                    }
                };
                synchronised_pages_manage_status();
