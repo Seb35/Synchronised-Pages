@@ -2,7 +2,7 @@
 # This file is distributed under the license WTFPL 2.0.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-09-16 18:53+0100\n"
+"PO-Revision-Date: 2015-09-18 22:09+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,3 +59,70 @@ msgstr "Pages synchronisées"
 #: wp-content/synchronised_pages/synchronised_pages.php:33
 msgid "Sets of synchronised pages from a template page"
 msgstr "Ensembles de pages synchronisées à partir d’un modèle de page"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid "Post Types"
+msgstr "Types d’articles"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid ""
+"Selected post types will be given the possibility to be mass-generated. "
+"Relevant taxonomies will be created."
+msgstr ""
+"Les types d’articles sélectionnés pourront être générés en masse. Des "
+"taxonomies appropriées seront créées."
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid "Some of the values you entered in %s → %s are not post types."
+msgstr ""
+"Certaines valeurs que vous avez entrées dans %s → %s ne sont pas des types "
+"d’articles."
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid ""
+"For now, it is not possible to use the post type %s in %s → %s. Possibly in "
+"a future version of the plugin %s."
+msgstr ""
+"Pour l’instant, il n’est pas possible d’utiliser le type d’article %s dans "
+"%s → %s. Possiblement dans une version future de l’extension %s."
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid "Name of the import"
+msgstr "Nom de l’import"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid "Internal name of the import."
+msgstr "Nom interne de l’import."
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid "All the synchronised pages will be created after the selected template."
+msgstr ""
+"Toutes les pages synchronisées seront créées d’après le modèle sélectionné."
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid "Database file"
+msgstr "Fichier de la base de données"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid ""
+"This file must be in CSV format. The column names will be the variable names "
+"in the template and each synchronised pages will be created given the "
+"informations of one line."
+msgstr ""
+"Le fichier doit être au format CSV. Les noms des colonnes seront les noms "
+"des variables dans le modèle et chaque page synchronisée sera créée d’après "
+"les informations d’une ligne."
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid "Create the synchronised pages"
+msgstr "Créer les pages synchronisées"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid "Synchronised status"
+msgstr "Statut Synchronisé"
+
+#: wp-content/synchronised_pages/synchronised_pages.php:XX
+msgid "Display the status &#8220;Synchronised&#8221; in the post list"
+msgstr ""
+"Afficher le statut &#171;&#8239;Synchronisé&#8239;&#187; dans la liste des "
+"articles"
