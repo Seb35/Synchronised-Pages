@@ -1,7 +1,6 @@
-# Translation of Synchronised Pages in French (France)
+# Translation of Synchronised Pages in LANGUAGE
 # Copyright (C) 2015 Synchronised Pages
 # This file is distributed under the license WTFPL 2.0.
-# Ce fichier est distribué sous licence WTFPL 2.0.
 msgid ""
 msgstr ""
 "Project-Id-Version: Synchronised Pages 0.1.1\n"
@@ -11,25 +10,25 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr_FR\n"
+"Language: LANGUAGE\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"PO-Revision-Date: 2015-09-20 19:46+0100\n"
+"PO-Revision-Date: 2015-09-20 19:28+0100\n"
 "Last-Translator: Sébastien Beyou <seb35@seb35.fr>\n"
-"Language-Team: fr_FR\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#. Nom de l’extension
+#. Name of the plugin
 #: synchronised-pages-misc.php:198 synchronised-pages-settings.php:40
 #: synchronised-pages-settings.php:100 synchronised-pages-settings.php:113
 #: synchronised-pages-settings.php:115
 msgid "Synchronised Pages"
 msgstr "Pages synchronisées"
 
-#. Adresse de l’extension
+#. URI of the plugin
 msgid "http://wordpress.org/plugins/synchronised-pages/"
 msgstr "http://wordpress.org/plugins/synchronised-pages/"
 
-#. Description de l’extension
+#. Description of the plugin
 msgid ""
 "This plugin generates a bunch of pages according to a template page with "
 "various informations extracted from a database. For instance you can mass-"
@@ -39,61 +38,61 @@ msgstr ""
 "Cette extension génère plusieurs pages selon un modèle de page, avec "
 "diverses informations extraites depuis une base de données. Par exemple, "
 "vous pouvez générer en masse une page par événement d’un festival, avec des "
-"informations spécifiques pour chaque événement."
+"informations spécifiques à chaque événement."
 
-#. Auteur de l’extension
+#. Author of the plugin
 msgid "Sébastien Beyou"
 msgstr "Sébastien Beyou"
 
-#. Adresse de l’auteur de l’extension
+#. Author URI of the plugin
 msgid "https://www.seb35.fr"
 msgstr "https://www.seb35.fr"
 
-#. Nouveau statut d’article
+#. New post status
 #: synchronised-pages-misc.php:22 synchronised-pages-misc.php:93
 #: synchronised-pages-misc.php:179 synchronised-pages-tool.php:112
 msgid "Template"
 msgstr "Modèle"
 
-#. Libellé du lien vers le statut d’article en question
+#. Label of the link to the specific post status
 #: synchronised-pages-misc.php:25
 msgid "Template <span class=\"count\">(%s)</span>"
 msgid_plural "Templates <span class=\"count\">(%s)</span>"
 msgstr[0] "Modèle <span class=\"count\">(%s)</span>"
 msgstr[1] "Modèles <span class=\"count\">(%s)</span>"
 
-#. Un bouton pour enregistrer
+#. A button to save
 #: synchronised-pages-misc.php:97
 msgid "Publish the template"
 msgstr "Publier le modèle"
 
-#. Un bouton pour enregistrer
+#. A button to save
 #: synchronised-pages-misc.php:95
 msgid "Update the template"
 msgstr "Mettre à jour le modèle"
 
-#. Nouvelle taxonomie
+#. New taxonomy
 #: synchronised-pages-misc.php:46
 msgid "Synchronised pages"
 msgstr "Pages synchronisées"
 
-#. Description de la taxonomie
+#. Description of the taxonomy
 #: synchronised-pages-misc.php:49
 msgid "Sets of synchronised pages from a template page"
 msgstr "Ensembles de pages synchronisées à partir d’un modèle de page"
 
-#. Un libellé dans la liste des articles
+#. A label in the posts list
 #: synchronised-pages-misc.php:185
 msgid "Synchronised"
 msgstr "Synchronisé"
 
-#. Titre d’un réglage
+#. Title of a setting
 #: synchronised-pages-settings.php:48 synchronised-pages-settings.php:101
 #: synchronised-pages-settings.php:114
 msgid "Post Types"
 msgstr "Types d’articles"
 
-#. Description d’une section dans les réglages
+#. Description of a section in the settings
 #: synchronised-pages-settings.php:67
 msgid ""
 "Selected post types will be given the possibility to be mass-generated. "
@@ -102,14 +101,14 @@ msgstr ""
 "Les types d’articles sélectionnés pourront être générés en masse. Des "
 "taxonomies appropriées seront créées."
 
-#. Un message d’erreur ; le "%s → %s" est l’emplacement du réglage en erreur
+#. An error message; the "%s → %s" is the location of the setting in error
 #: synchronised-pages-settings.php:99
 msgid "Some of the values you entered in %s → %s are not post types."
 msgstr ""
 "Certaines valeurs que vous avez entrées dans %s → %s ne sont pas des types "
 "d’articles."
 
-#. Un message d’erreur ; le "%s → %s" est l’emplacement du réglage en erreur
+#. An error message; the "%s → %s" is the location of the setting in error
 #: synchronised-pages-settings.php:111
 msgid ""
 "For now, it is not possible to use the post type %s in %s → %s. Possibly in "
@@ -118,47 +117,47 @@ msgstr ""
 "Pour l’instant, il n’est pas possible d’utiliser le type d’article %s dans "
 "%s → %s. Possiblement dans une version future de l’extension %s."
 
-#. Titre d’un réglage
+#. Title of a setting
 #: synchronised-pages-settings.php:57
 msgid "Synchronised Status"
 msgstr "Statut Synchronisé"
 
-#. Description d’un réglage
+#. Description of a setting
 #: synchronised-pages-settings.php:134
 msgid "Display the status &#8220;Synchronised&#8221; in the posts list"
 msgstr ""
 "Afficher le statut &#171;&#8239;Synchronisé&#8239;&#187; dans la liste des "
 "articles"
 
-#. Description de lien(s) ; %s sont les lien(s) vers des types d’articles
+#. Description of link(s); %s are the link(s) to post types
 #: synchronised-pages-tool.php:88
 msgid "Manage previous imports for this post type: %s."
 msgid_plural "Manage previous imports for these post types: %s."
 msgstr[0] "Gérer les imports précédents pour ce type d’article&nbsp;: %s."
-msgstr[1] "Gérer les imports précédents pour ce type d’article&nbsp;: %s."
+msgstr[1] "Gérer les imports précédents pour ces types d’articles&nbsp;: %s."
 
-#. Titre d’un champ texte dans un formulaire
+#. Title of a text field in a form
 #: synchronised-pages-tool.php:106
 msgid "Name of the import"
 msgstr "Nom de l’import"
 
-#. Description d’un champ texte
+#. Description of the text field
 #: synchronised-pages-tool.php:109
 msgid "Internal name of the import."
 msgstr "Nom interne de l’import."
 
-#. Description d’une entrée dans un formulaire
+#. Description of an input in a form
 #: synchronised-pages-tool.php:130
 msgid "All the synchronised pages will be created after the selected template."
 msgstr ""
 "Toutes les pages synchronisées seront créées d’après le modèle sélectionné."
 
-#. Titre d’un champ d’import dans un formulaire
+#. Title of an upload field in a form
 #: synchronised-pages-tool.php:134
 msgid "Database file"
 msgstr "Fichier de la base de données"
 
-#. Description d’un champ d’import
+#. Description of the upload field
 #: synchronised-pages-tool.php:137
 msgid ""
 "This file must be in CSV format. The column names will be the variable names "
@@ -169,7 +168,7 @@ msgstr ""
 "des variables dans le modèle et chaque page synchronisée sera créée d’après "
 "les informations d’une ligne."
 
-#. Un bouton pour envoyer le formulaire
+#. A button to submit the form
 #: synchronised-pages-tool.php:142
 msgid "Create the synchronised pages"
 msgstr "Créer les pages synchronisées"
