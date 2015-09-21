@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Synchronised Pages
- * @version 0.1.1
+ * @version 0.1.2
  * @license WFTPL 2.0
  */
 /*
@@ -9,7 +9,7 @@ Plugin Name: Synchronised Pages
 Plugin URI: http://wordpress.org/plugins/synchronised-pages/
 Description: This plugin generates a bunch of pages according to a template page with various informations extracted from a database. For instance you can mass-generate one page per event of a festival, with specific informations for each event.
 Author: Sébastien Beyou
-Version: 0.1.1
+Version: 0.1.2
 Author URI: https://www.seb35.fr
 */
 
@@ -45,6 +45,15 @@ add_action( 'admin_footer-post-new.php', 'synchronised_pages_append_status' );
 
 // Remove the possibility to create a tag in the taxonomy synchronised_pages in the user interface
 add_action( 'admin_print_scripts-edit-tags.php', 'synchronised_pages_remove_tag_creation' );
+
+// Remove the possibility to assign a tag of the taxonomy synchronised_pages in the edit interface
+add_action( 'admin_print_scripts-post.php', 'synchronised_pages_remove_tag_assign' );
+add_action( 'admin_print_scripts-post-new.php', 'synchronised_pages_remove_tag_assign' );
+
+add_action( 'admin_footer-edit-tags.php', 'synchronised_pages_remove_term_link' );
+
+// Remove the possibility to edit a term of the taxonomy synchronised_pages
+add_filter( 'synchronised_pages_row_actions', 'synchronised_pages_remove_quick_term_edition', 10, 1 );
 
 // Display the state Template or Synchronised in the posts list
 add_filter( 'display_post_states', 'synchronised_pages_display_state' );

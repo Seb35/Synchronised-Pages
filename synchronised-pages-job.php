@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Synchronised Pages
- * @version 0.1.1
+ * @version 0.1.2
  * @license WFTPL 2.0
  */
 
@@ -49,9 +49,10 @@ function synchronised_pages_create_synchronised_pages( $filename, $template_id, 
 	echo 'template_terms=';var_dump($template_terms);echo '<br />';
 	
 	// Forth, create the terms for the template and the import
-	if ( ! ($template_term_id = intval( get_term_by( 'slug', 'page'.$template->ID, 'synchronised_pages' )->term_id ) ) )
-		$template_term_id = wp_insert_term( $template->post_title, 'synchronised_pages', array( 'slug' => 'page'.$template->ID ) )['term_id'];
+	if ( ! ($template_term_id = intval( get_term_by( 'slug', $template->post_type.$template->ID, 'synchronised_pages' )->term_id ) ) )
+		$template_term_id = wp_insert_term( $template->post_title, 'synchronised_pages', array( 'slug' => $template->post_type.$template->ID ) )['term_id'];
 	$import_term_id = intval( wp_insert_term( $import_name, 'synchronised_pages', array( 'parent' => $template_term_id /*, 'description' => ''*/ ) )['term_id'] );
+	wp_set_object_terms( $template->ID, $template_term_id, 'synchronised_pages', true );
 	
 	// Operation - read each line
 	for ( $i=0; $i<count($data); $i++ ) {
