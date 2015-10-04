@@ -1,15 +1,7 @@
-=== Synchronised Pages ===
-Contributors: sseb35
-Tags: content, template, template engine, pages
-Requires at least: 4.0
-Tested up to: 4.3
-Stable tag: trunk
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+The WordPress plugin __Synchronised Pages__ empower you in creating a lot of pages according to a template in which you can remplace some parts of the template with specific informations contained in a database.
 
-Synchronised Pages empower you in creating a lot of pages according to a template in which you can remplace some parts of the template with specific informations contained in a database.
-
-== Description ==
+Description
+===========
 
 An easy way to describe this plugin is to give an example: imagine you want to create a small website for a festival in which each concert has specific hours, title, band/musicians, description… Without this plugin, you have to create by hand all the pages. With this plugin you can put all informations in a spreadsheet, create a template for the pages, and then automatically generate all the pages.
 
@@ -21,7 +13,8 @@ The three steps of the workflow:
 
 In the posts list, you can view all the generated pages tagged with the word ”Synchronised” and the template is tagged with the word ”Template”. Obviously, the generated posts appear to the public.
 
-== Installation ==
+Installation
+============
 
 This section describes how to install the plugin and get it working.
 
@@ -31,31 +24,49 @@ This section describes how to install the plugin and get it working.
 
 With default settings, you can only generate pages, not posts; you can change this setting in the menu Settings > Writing > Synchronised Pages.
 
-== Frequently Asked Questions ==
+Frequently Asked Questions
+==========================
 
-= Are the templates public? =
+Are the templates public?
+-------------------------
 
 No. They are similar to Private posts.
 
-= If some pages already exist, are they remplaced or re-created? =
+If some pages already exist, are they remplaced or re-created?
+--------------------------------------------------------------
 
 Currently, pages whose the title already exist are remplaced, so the old content is overwritten by the generated new content.
 
 Possibly in the future, an option will give the choice.
 
-== Changelog ==
+Changelog
+=========
 
-= 0.2 =
+0.2
+---
 
 Beta version. First public version.
 
-= 0.1 =
+0.1
+---
 
 Alpha version. Working and stable plugin, could be 1.0 but some parts of code should be rewritten.
 
-== Development ==
+Development
+===========
 
 Development is done on GitHub, in the repository [Seb35/Synchronised-Pages](https://github.com/Seb35/Synchronised-Pages). You can report bugs or ask features in the [bug tracker](https://github.com/Seb35/Synchronised-Pages/issues), and if you are a developer you are welcome to submit [pull request](https://github.com/Seb35/Synchronised-Pages/pulls).
 
 Versions on GitHub will be send back to the officiel WordPress repository.
+
+WordPress plugin metadata
+-------------------------
+
+Contributors: sseb35
+Tags: content, template, template engine, pages
+Requires at least: 4.0
+Tested up to: 4.3
+Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
