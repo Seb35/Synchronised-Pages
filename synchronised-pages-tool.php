@@ -270,12 +270,16 @@ function synchronised_pages_import() {
 	$import_name = sanitize_text_field( strval( $_POST['import_name'] ) );
 	$filename = strval($_FILES['csvfile']['tmp_name'] );
 	$post_template = intval($_POST['post_template']);
-	echo 'enter in processing<br />';
-	echo 'import_name='.$import_name.'<br />';
-	echo 'filename='.$filename.'<br />';
-	echo 'post_template='.$post_template.'<br />';
-	var_dump($_FILES);echo '<br />';
-	synchronised_pages_create_synchronised_pages( $filename, $post_template, $import_name );
-	echo 'success import<br />';
+	//echo 'enter in processing<br />';
+	//echo 'import_name='.$import_name.'<br />';
+	//echo 'filename='.$filename.'<br />';
+	//echo 'post_template='.$post_template.'<br />';
+	//var_dump($_FILES);echo '<br />';
+	list( $post_type, $import_slug ) = synchronised_pages_create_synchronised_pages( $filename, $post_template, $import_name );
+	//echo 'success import<br />';
+	
+	// Redirect to the imported pages
+	wp_safe_redirect( get_admin_url().'edit.php?synchronised_pages='.$import_slug.($post_type!='post'?'&post_type='.$post_type:'') );
+	exit;
 }
 
