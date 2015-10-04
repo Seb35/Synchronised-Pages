@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Synchronised Pages
- * @version 0.1.2
+ * @version 0.2.0
  * @license WFTPL 2.0
  */
 
@@ -118,7 +118,7 @@ function synchronised_pages_append_status() {
 				// Hide the \'Save draft\' button and change the \'Publish\' button to save
 				$(\'#save-post\').hide();
 				$(\'#publish\').attr(\'name\', \'save\');
-				$(\'#publish\').val(synchronised_pages_original_status==\'template\'?\''.$publish_template_label.'\':\''.$update_template_label.'\');
+				$(\'#publish\').val(synchronised_pages_original_status==\'template\'?\''.$update_template_label.'\':\''.$publish_template_label.'\');
 				
 			} else {
 				
