@@ -1,5 +1,6 @@
 === Synchronised Pages ===
 Contributors: sseb35
+Donate link: 
 Tags: content, template, template engine, pages
 Requires at least: 4.0
 Tested up to: 4.3
@@ -7,7 +8,7 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Synchronised Pages empower you in creating a lot of pages according to a template in which you can remplace some parts of the template with specific informations contained in a database.
+Synchronised Pages empower you in creating a lot of pages according to a template in which some parts are remplaced by informations from a database.
 
 == Description ==
 
@@ -43,6 +44,14 @@ Currently, pages whose the title already exist are remplaced, so the old content
 
 Possibly in the future, an option will give the choice.
 
+= Is it the same thing as “child pages”? =
+
+Not exactly. Child pages is a feature specific for the post type “Page” (not standard “Posts”) where you can say a given page is a child of some other page, it is useful to show a hierarchical list of pages. Here the synchronised pages are only similar in their layout. But if you want make that all synchronised pages have a parent page, it’s up to you to make it – you can automatically get the list of all synchronised pages from a given import.
+
+== Screenshots ==
+
+None.
+
 == Changelog ==
 
 = 0.2 =
@@ -52,6 +61,10 @@ Beta version. First public version.
 = 0.1 =
 
 Alpha version. Working and stable plugin, could be 1.0 but some parts of code should be rewritten.
+
+== Upgrade Notice ==
+
+None.
 
 == Development ==
 
