@@ -1,7 +1,6 @@
 <?php
 /**
  * @package Synchronised Pages
- * @version 0.2.0
  * @license WFTPL 2.0
  */
 
