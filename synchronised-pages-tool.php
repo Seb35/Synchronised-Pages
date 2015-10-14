@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Synchronised Pages
- * @version 0.1.1
+ * @version 0.1.2
  * @license WFTPL 2.0
  */
 
@@ -69,7 +69,11 @@ if ( ! current_user_can( $tax->cap->edit_terms ) ) {
 	//$total_pages = $wp_list_table->get_pagination_arg( 'total_pages' );*/
 	
 	echo '<div class="wrap">';
-	echo '<h1>'.esc_html( $tax->labels->name ).'</h1>';
+	echo '<h1>'.esc_html( $tax->labels->name );
+	//echo '<br class="clear" />';
+	// translators: Link
+	echo ' <a href="'.get_admin_url().'edit-tags.php?taxonomy=synchronised_pages" class="page-title-action">'.esc_html( __( 'Manage imports', 'synchronised-pages' ) ).'</a>';
+	echo '</h1>';
 	echo '<br class="clear" />';
 	echo '<div id="col-container">';
 	
@@ -79,13 +83,13 @@ if ( ! current_user_can( $tax->cap->edit_terms ) ) {
 	//echo '<input type="hidden" name="taxonomy" value="synchronised_pages" />';
 	//$wp_list_table->display();
 	//echo '<br class="clear" /></form>';
-	$links = '';
-	foreach ( $post_types as $post_type ) {
-		if ( $links ) $links .= ', ';
-		$links .= '<a href="'.get_admin_url().'edit-tags.php?taxonomy=synchronised_pages'.($post_type!='post'?'&post_type='.$post_type:'').'">'.get_post_type_object($post_type)->labels->singular_name.'</a>';
-	}
+	//$links = '';
+	//foreach ( $post_types as $post_type ) {
+	//	if ( $links ) $links .= ', ';
+	//	$links .= '<a href="'.get_admin_url().'edit-tags.php?taxonomy=synchronised_pages'.($post_type!='post'?'&post_type='.$post_type:'').'">'.get_post_type_object($post_type)->labels->singular_name.'</a>';
+	//}
 	// translators: Description of link(s); %s are the link(s) to post types
-	echo sprintf( esc_html( _n( 'Manage previous imports for this post type: %s.', 'Manage previous imports for these post types: %s.', count($post_types), 'synchronised-pages' ) ), $links);
+	//echo sprintf( esc_html( _n( 'Manage previous imports for this post type: %s.', 'Manage previous imports for these post types: %s.', count($post_types), 'synchronised-pages' ) ), $links);
 	echo '';
 	echo '';
 	echo '';
@@ -174,18 +178,87 @@ if ( ! current_user_can( $tax->cap->edit_terms ) ) {
 }
 
 
-//function synchronised_pages_columns($theme_columns) {
-//	$new_columns = array(
-//		'cb' => '<input type="checkbox" />',
-//		'name' => __('Name'),
-//		//'header_icon' => '',
-//		'description' => __('Description'),
-//		'slug' => __('Slug'),
-//		'posts' => __('Posts')
-//		);
-//	return $new_columns;
-//}
-//add_filter('manage_edit-synchronised_pages_columns', 'synchronised_pages_columns'); 
+function synchronised_pages_sortable_columns($theme_columns) {
+	
+	return array(
+		'name' => 'name',
+		'post_type' => 'post_type',
+		'total' => 'count',
+	);
+}
+add_filter('manage_edit-synchronised_pages_sortable_columns', 'synchronised_pages_sortable_columns'); 
+
+function synchronised_pages_columns($theme_columns) {
+	
+	return array(
+		'cb' => '<input id="cb-select-all-1" type="checkbox" />',
+		'name' => __('Name'),
+		'post_type' => __('Post Types', 'synchronised-pages'),
+		'total' => __('Total'),
+	);
+}
+add_filter('manage_edit-synchronised_pages_columns', 'synchronised_pages_columns'); 
+
+// Add to admin_init function   
+ 
+function synchronised_pages_rows( $junk, $column_name, $term_id ) {
+	
+	global $wpdb;
+	
+	// Get registered post types
+	$post_types = get_option( 'synchronised-pages-setting-post-types', null );
+	if( $post_types ) $post_types = array_keys( (array) $post_types );
+	else if( $post_types === null ) $post_types = array( 'page' );
+	else $post_types = array();
+	
+	$term = get_term( $term_id, 'synchronised_pages' );
+	
+	$post_type = null;
+	$template = false;
+	$capture = null;
+	// If we are in a line of a post template
+	if ( preg_match( '/^('.implode('|',$post_types).')/', $term->slug, $capture ) ) {
+		$post_type = $capture[1];
+		$template = true;
+	}
+	// If we are in a line of an import
+	else {
+		$parent_term = get_term( $term->parent, 'synchronised_pages' );
+		if ( preg_match( '/^('.implode('|',$post_types).')/', $parent_term->slug, $capture ) ) {
+			$post_type = $capture[1];
+		}
+		else {
+			return; // Exception
+		}
+	}
+	
+	if ( $column_name == 'post_type' ) {
+		
+		// translators: Display the 'Templace' status of a page
+		if( $template ) return sprintf( esc_html( __('%s (template)', 'synchronised-pages') ), get_post_type_object( $post_type )->labels->singular_name );
+		return get_post_type_object( $post_type )->labels->name;
+	}
+	
+	if ( $column_name == 'total' ) {
+		
+		$count_term = intval( $wpdb->get_col('SELECT COUNT(*) FROM '.$wpdb->term_relationships.' AS tr INNER JOIN '.$wpdb->term_taxonomy.' AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id INNER JOIN '.$wpdb->posts.' AS p ON tr.object_id = p.ID WHERE tt.taxonomy = \'synchronised_pages\' AND tt.term_id = \''.intval($term_id).'\' AND p.post_type = \''.$post_type.'\'')[0] );
+		
+		if ( $template ) {
+			
+			$term_ids = get_term_children( $term_id, 'synchronised_pages' );
+			$term_ids = '(\'' . implode( '\',\'', $term_ids ) . '\')';
+			$count_terms = count( $wpdb->get_col('SELECT DISTINCT tr.object_id FROM '.$wpdb->term_relationships.' AS tr INNER JOIN '.$wpdb->term_taxonomy.' AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id INNER JOIN '.$wpdb->posts.' AS p ON tr.object_id = p.ID WHERE tt.taxonomy = \'synchronised_pages\' AND tt.term_id IN '.$term_ids.' AND p.post_type = \''.$post_type.'\'') );
+			
+			// translators: Display two numbers
+			return '<a href="'.get_admin_url().'edit.php?synchronised_pages='.$term->slug.($post_type!='post'?'&post_type='.$post_type:'').'">'.esc_html( sprintf( __('%s + %s', 'synchronised-pages'), number_format_i18n($count_term), number_format_i18n($count_terms) ) ).'</a>';
+		}
+		else {
+			
+			return '<a href="'.get_admin_url().'edit.php?synchronised_pages='.$term->slug.($post_type!='post'?'&post_type='.$post_type:'').'">'.number_format_i18n($count_term).'</a>';
+		}
+	}
+}
+add_filter( 'manage_synchronised_pages_custom_column', 'synchronised_pages_rows', 10, 3 );
 
 
 /**

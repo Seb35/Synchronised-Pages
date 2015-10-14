@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Synchronised Pages
- * @version 0.1.1
+ * @version 0.1.2
  * @license WFTPL 2.0
  */
 
@@ -26,30 +26,25 @@ function synchronised_pages_add_stati() {
 	) );
 	
 	// Labels of the taxonomy below
-	//$labels = array(
-	//	'name'			=> __( 'Genres', 'synchronised-pages' ),
-	//	'singular_name'	 => __( 'Genre', 'synchronised-pages' ),
-	//	'search_items'	=> __( 'Search Genres', 'synchronised-pages' ),
-	//	'all_items'		 => __( 'All Genres', 'synchronised-pages' ),
-	//	'parent_item'	 => __( 'Parent Genre', 'synchronised-pages' ),
-	//	'parent_item_colon' => __( 'Parent Genre:', 'synchronised-pages' ),
-	//	'edit_item'		 => __( 'Edit Genre', 'synchronised-pages' ),
-	//	'update_item'	 => __( 'Update Genre', 'synchronised-pages' ),
-	//	'add_new_item'	=> __( 'Add New Genre', 'synchronised-pages' ),
-	//	'new_item_name'	 => __( 'New Genre Name', 'synchronised-pages' ),
-	//	'menu_name'		 => __( 'Genre', 'synchronised-pages' ),
-	//);
+	$labels = array(
+	// translators: A button
+		'search_items'	=> __( 'Search imports', 'synchronised-pages' ),
+	);
 	
 	// Register the taxonomy where are grouped the imports of synchronised pages
 	register_taxonomy( 'synchronised_pages', null, array(
 		// translators: New taxonomy
  		'label'		=> __( 'Synchronised pages', 'synchronised-pages' ),
-	//	'labels'	 => $labels,
+		'labels'	 => $labels,
 		// translators: Description of the taxonomy
 		'description'=> __( 'Sets of synchronised pages from a template page', 'synchronised-pages' ),
 		'hierarchical' => true,
 		'public'	 => false,
 		'show_ui'	=> true,
+		'show_in_menu' => false,
+		'show_in_quick_edit' => false,
+		'show_in_nav_menus' => false,
+		'show_tagcloud' => false,
 	) );
 	
 	// Get post types where we want synchronised pages
@@ -92,9 +87,9 @@ function synchronised_pages_append_status() {
 	// Prepare variable JavaScript+HTML snippets
 	$template_label = esc_js( esc_html( __('Template', 'synchronised-pages') ) );
 	// translators: A button to save
-	$update_template_label = esc_js( esc_html( __('Update the template', 'synchronised-pages') ) );
-	// translators: A button to save
 	$publish_template_label = esc_js( esc_html( __('Publish the template', 'synchronised-pages') ) );
+	// translators: A button to save
+	$update_template_label = esc_js( esc_html( __('Update the template', 'synchronised-pages') ) );
 	$complete = '';
 	$label = '';
 	if ( $post->post_status == 'template' ) {
@@ -157,8 +152,64 @@ function synchronised_pages_remove_tag_creation() {
 	.taxonomy-synchronised_pages #col-right {
 		width: 100%;
 	}
+	.taxonomy-synchronised_pages .fixed .column-post_type {
+		width: 130px;
+	}
+	.taxonomy-synchronised_pages .fixed .column-description {
+		width: 50%;
+	}
+	.taxonomy-synchronised_pages .fixed .column-total {
+		width: 74px;
+	}
 </style>
 ';
+}
+
+
+/**
+ * Remove the possibility to assign a tag of the taxonomy synchronised_pages in the edit interface
+ *
+ * @action admin_print_scripts-post.php
+ * @action admin_print_scripts-post-new.php
+ */
+function synchronised_pages_remove_tag_assign() {
+	
+	echo '<style type="text/css">
+	#synchronised_pagesdiv, #adv-settings label[for="synchronised_pagesdiv-hide"] {
+		display: none;
+	}
+</style>
+';
+}
+
+
+function synchronised_pages_remove_term_link() {
+	
+	echo '<script type="text/javascript">
+	jQuery(document).ready( function($) {
+		$(\'.taxonomy-synchronised_pages td.column-primary\').each( function() {
+			if( $(this).find(\'div.hidden div.parent\').html() != \'0\' ) {
+				$(this).find(\'a.row-title\').contents().unwrap().wrap(\'<span class="row-title"></span>\');
+			}
+			else {
+				$(this).find(\'a.row-title\').attr(\'href\', \'post.php?post=\'+$(this).find(\'div.hidden div.slug\').html().replace(/[^0-9]/g, \'\')+\'&action=edit\');
+			}
+		} );
+	} );
+</script>
+';
+}
+
+/**
+ * Remove the possibility to edit a term of the taxonomy synchronised_pages
+ *
+ * @action synchronised_pages_row_actions
+ */
+function synchronised_pages_remove_quick_term_edition( $actions ) {
+    
+    unset( $actions['edit'] );
+    unset( $actions['inline hide-if-no-js'] );
+    return $actions;
 }
 
 
