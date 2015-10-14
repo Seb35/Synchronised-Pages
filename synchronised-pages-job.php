@@ -18,10 +18,10 @@ function synchronised_pages_create_synchronised_pages( $filename, $template_id, 
 	$template = get_post( $template_id );
 	var_dump($template);
 	if ( $template->post_status != 'template' ) {
-		echo 'erreur: pas un template<br />';
+		//echo 'erreur: pas un template<br />';
 		return; // Exception about status
 	}
-	echo 'après lecture du template<br />';
+	//echo 'après lecture du template<br />';
 	
 	// Second, read CSV file
 	list( $columns, $data, $error ) = synchronised_pages_process_csv_file( $filename );
@@ -31,9 +31,9 @@ function synchronised_pages_create_synchronised_pages( $filename, $template_id, 
 	for ( $i=0; $i<count($columns); $i++ ) {
 		$columns[$i] = '/%' . $columns[$i] . '%/';
 	}
-	echo 'après lecture du CSV<br />';
-	echo 'columns=';var_dump($columns);echo '<br />';
-	echo 'data=';var_dump($data);echo '<br />';
+	//echo 'après lecture du CSV<br />';
+	//echo 'columns=';var_dump($columns);echo '<br />';
+	//echo 'data=';var_dump($data);echo '<br />';
 	
 	// Third, manage the categories, tags, and other taxonomies
 	$template_terms = array();
@@ -45,12 +45,13 @@ function synchronised_pages_create_synchronised_pages( $filename, $template_id, 
 			$template_terms[$taxonomy->name] = wp_get_object_terms( $template->ID, $taxonomy, array( 'fields' => 'names' ) );
 		}
 	}
-	echo 'template_terms=';var_dump($template_terms);echo '<br />';
+	//echo 'template_terms=';var_dump($template_terms);echo '<br />';
 	
 	// Forth, create the terms for the template and the import
 	if ( ! ($template_term_id = intval( get_term_by( 'slug', $template->post_type.$template->ID, 'synchronised_pages' )->term_id ) ) )
 		$template_term_id = wp_insert_term( $template->post_title, 'synchronised_pages', array( 'slug' => $template->post_type.$template->ID ) )['term_id'];
 	$import_term_id = intval( wp_insert_term( $import_name, 'synchronised_pages', array( 'parent' => $template_term_id /*, 'description' => ''*/ ) )['term_id'] );
+	$import_term = get_term( $import_term_id, 'synchronised_pages' );
 	wp_set_object_terms( $template->ID, $template_term_id, 'synchronised_pages', true );
 	
 	// Operation - read each line
@@ -58,6 +59,8 @@ function synchronised_pages_create_synchronised_pages( $filename, $template_id, 
 		
 		synchronised_pages_create_one_synchronised_page( $template, $columns, $data[$i], $template_terms, $import_term_id );
 	}
+	
+	return array( $template->post_type, $import_term->slug );
 }
 
 
@@ -115,7 +118,7 @@ function synchronised_pages_process_csv_file( $filename ) {
 function synchronised_pages_create_one_synchronised_page( $template, $columns, $data, $template_terms, $import_term_id ) {
 	
 	// Debug
-	echo "NEW POST<br />";
+	//echo "NEW POST<br />";
 	
 	// Search if there is already a post with this title
 	$title = preg_replace( $columns, $data, preg_replace( '/^.*?\|/', '', $template->post_title ) );
@@ -132,8 +135,8 @@ function synchronised_pages_create_one_synchronised_page( $template, $columns, $
 	if ( count($post) == 1 ) $ID = $post[0]->ID;
 	
 	// Debug
-	if ( $ID ) echo "* update post $ID $title ({$template->post_title})<br />";
-	else echo "* create post $title ({$template->post_title})<br />";
+	//if ( $ID ) echo "* update post $ID $title ({$template->post_title})<br />";
+	//else echo "* create post $title ({$template->post_title})<br />";
 	
 	// Manage the categories, post_tags, and other taxonomies
 	$categories = array();

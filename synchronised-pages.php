@@ -8,7 +8,7 @@ Plugin Name: Synchronised Pages
 Plugin URI: http://wordpress.org/plugins/synchronised-pages/
 Description: This plugin generates a bunch of pages according to a template page with various informations extracted from a database. For instance you can mass-generate one page per event of a festival, with specific informations for each event.
 Author: Sébastien Beyou
-Version: 0.2.1
+Version: 0.2.2
 Author URI: https://www.seb35.fr
 */
 
