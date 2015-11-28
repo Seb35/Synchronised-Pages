@@ -16,7 +16,7 @@ function synchronised_pages_create_synchronised_pages( $filename, $template_id, 
 	
 	// First, open the template
 	$template = get_post( $template_id );
-	var_dump($template);
+	//var_dump($template);
 	if ( $template->post_status != 'template' ) {
 		//echo 'erreur: pas un template<br />';
 		return; // Exception about status
